@@ -44,32 +44,6 @@
 
 data = [line]
 Plotly.newPlot('plot', data, layout, {staticPlot: false})
-
-function zoomIn(param = 0.01) {
-	zoom += param
-}
-
-function zoomOut(param = 0.01) {
-	if (zoom >param) {
-		zoom -= param
-	}
-}
-
-function left(param = 0.1) {
-	offset_x -= param
-}
-
-function right(param = 0.1) {
-	offset_x += param
-}
-
-function down(param = 0.1) {
-	offset_y += param
-}
-
-function up (param = 0.1) {
-	offset_y -= param
-}
                
 function restart() {
   fleeDirection = Math.random()*PI*2
@@ -219,7 +193,3 @@ function _midpoint(point_1, point_2){
 
   return(midpoint)
 }
-
-
-
-
