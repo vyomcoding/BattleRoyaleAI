@@ -1,0 +1,29 @@
+Algorithm for the prey AI:
+	1) Play the game multiple times, each time trying out different angles. For that, we need a play again feature, and a code trying to show the best angle.
+	2) Once you have covered all the angles, do the winning ones again, and see if they lose
+	3) Repeat step 2 until 1 angle left.
+	
+ *we could have the AI simulate a game.
+
+	For the predator AI we will stick with making the predators having to hunt the AIs by chasing at 0 degrees.
+
+
+
+Fix the corners
+  Make it so that the predator touching the prey decreases its health. As of now only the weapon can harm.
+
+Done
+
+-- Well done!
+
+(Extra points!!!!!!!!!!!!!!!!!!)
+  Make another graph with the angle for the predator
+
+i didn't do this bit. 
+
+-- No worries.
+
+
+
+
+
