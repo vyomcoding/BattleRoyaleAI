@@ -45,7 +45,39 @@
 data = [line]
 Plotly.newPlot('plot', data, layout, {staticPlot: false})
                
+function restart() {
+  fleeDirection = Math.random()*PI*2
+  timeAlive = 0
 
+  alivePreys = []
+  alivePredators = []
+
+  predators = []
+  for (var i = 0; i < 1; i++){
+    AI_ = new ObjectAI()
+    AI_.strategy = 'predator'
+    AI_.d /= 2
+    AI_.topSpeed *= .4
+    AI_.strength *= 3
+    predators.push(AI_)
+  }
+
+  preys = []
+  for (var i = 0; i < 1; i++){
+    AI_ = new ObjectAI()
+    AI_.strategy = 'prey'
+    AI_.topSpeed *= .8
+    AI_.weaponDistance *= 1.5
+    preys.push(AI_)
+  }
+}
+
+function gameOver(){
+  x.push(fleeDirection)
+  y.push(timeAlive)
+
+  Plotly.redraw('plot')
+}
 
 function setup(){
   restart()
@@ -148,6 +180,13 @@ function draw() {
 function _midpoint(point_1, point_2){
   
   let midpoint = {}
+
+  /*
+  point_1 = {'x':23, 'y':43}
+	average between point_1 and point_2
+
+	((point_1.x+point_2.x)/2, (point_1.y+point_2.y)/2)
+	*/
   
   midpoint.x = (point_1.x + point_2.x) / 2
   midpoint.y = (point_1.y + point_2.y) / 2
