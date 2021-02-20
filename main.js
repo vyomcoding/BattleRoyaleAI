@@ -10,23 +10,6 @@ class Universe {
 		this.actors = null
 		this.stage = null
 	}
-/*
-
-link:
-
-Neha Mahendru is inviting you to a scheduled Zoom meeting.
-
-Topic: Neha Mahendru's Zoom Meeting
-Time: Feb 20, 2021 04:30 PM London
-
-Join Zoom Meeting
-https://us04web.zoom.us/j/75771016794?pwd=RWRSM1JZdDVodFZhUzF4TitpMzNDUT09
-
-Meeting ID: 757 7101 6794
-Passcode: RHd6rk
-
-
- */
 
   actorLimits() {
 		
@@ -50,12 +33,21 @@ Passcode: RHd6rk
     return([upActor, downActor, leftActor, rightActor])
 	}
 
-	rescaleBackground(){
+	scalingFactors(){
+    let limits = this.actorLimits()
 
-	}
+    let middle_lines = {x:0, y:0}
+    middle_lines.x = limits[2] + (limits[3]-limits[2])/2
+    middle_lines.y = limits[0] + (limits[1]-limits[0])/2
+    
+    let bigger_side = Math.max(limits[3]-limits[2], limits[1]- limits[0])
+    let rect_left = middle_lines.x - bigger_side/2
+    let rect_top = middle_lines.y - bigger_side/2
 
-	repositionActors(){
-		
+    scale(400/bigger_side)
+    translate(rect_left*-1, rect_top*-1)
+
+		return({scale:bigger_side, left:rect_left, top:rect_top})
 	}
 }
 

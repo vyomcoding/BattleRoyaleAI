@@ -17,34 +17,23 @@ class Circle {
 	}
 }
 
-/*
-Neha Mahendru is inviting you to a scheduled Zoom meeting.
-
-Topic: Neha Mahendru's Zoom Meeting
-Time: Feb 20, 2021 04:30 PM London
-
-Join Zoom Meeting
-https://us04web.zoom.us/j/75771016794?pwd=RWRSM1JZdDVodFZhUzF4TitpMzNDUT09
-
-Meeting ID: 757 7101 6794
-Passcode: RHd6rk
-
-
-*/
 
 var multiverse = new Universe()
 
 var circles = []
 
-for (i=0;i<5;i++) {
+for (i=0;i<10;i++) {
 	var circ_ = new Circle()
 
 	circles.push(circ_)
 }
 
+multiverse.actors = circles
+
 function setup(){
 	createCanvas(400, 400)
 }
+
 
 
 
@@ -60,28 +49,33 @@ function back_() {
 
 function draw(){
 
-	multiverse.actors = circles
-	let limits = multiverse.actorLimits()
-
-  scale(400/Math.max(10,limits[3]-limits[2]), 400/Math.max(limits[1]- limits[0]))
-  translate(-limits[2], -limits[0])
-
 	background(200)
+
+  scaling_factors = multiverse.scalingFactors()
 	
-	for (i=0;i<5;i++) {
+	back_()
+  
+	for (i=0;i<circles.length;i++) {
 		circles[i].draw()
 		circles[i].move()
 	}
-
-	back_()
-
-  push()
-  stroke(0, 255, 0)
-  noFill()
-	strokeWeight(7)
-	rect(limits[2], limits[0], limits[3]-limits[2], limits[1]- limits[0] )
-	pop()
+  
 }
+
+function meanPosition(circles){ // you have horrible hair
+	let xs = 0
+	let ys = 0
+	for (i=0;i<circles.length;i++) {
+		xs += circles[i].x
+		ys += circles[i].y
+	}
+	xs /= circles.length
+	ys /= circles.length
+
+	return({x:xs, y:ys})
+}
+
+
 
 
 
