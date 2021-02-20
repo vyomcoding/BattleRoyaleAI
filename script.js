@@ -1,8 +1,8 @@
 class Circle {
 	constructor(){
 		this.r = 10
-		this.x = 200
-		this.y = 200
+		this.x = 200 + 200 * (Math.random()-0.5)
+		this.y = 200 + 200 * (Math.random()-0.5)
 		this.d = this.r*2
 	}
 
@@ -45,7 +45,11 @@ function back_() {
 
 function draw(){
 
+	multiverse.actors = circles
+	let limits = multiverse.actorLimits()
 
+  scale(400/Math.max(10,limits[3]-limits[2]), 400/Math.max(limits[1]- limits[0]))
+  //translate(-limits[2], -limits[0])
 
 	background(200)
 	
@@ -56,8 +60,6 @@ function draw(){
 
 	back_()
 
-	multiverse.actors = circles
-	let limits = multiverse.actorLimits()
   push()
   stroke(0, 255, 0)
   noFill()

@@ -27,12 +27,9 @@ class Universe {
 		for (i=0;i<this.actors.length;i++){
       actorsY.push(this.actors[i].y)
     }
-
-
+    
 		let upActor = Math.min(...actorsY)
 		let downActor = Math.max(...actorsY)
-    
-    console.log(upActor)
 		
     return([upActor, downActor, leftActor, rightActor])
 	}
