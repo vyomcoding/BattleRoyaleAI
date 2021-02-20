@@ -17,6 +17,21 @@ class Circle {
 	}
 }
 
+/*
+Neha Mahendru is inviting you to a scheduled Zoom meeting.
+
+Topic: Neha Mahendru's Zoom Meeting
+Time: Feb 20, 2021 04:30 PM London
+
+Join Zoom Meeting
+https://us04web.zoom.us/j/75771016794?pwd=RWRSM1JZdDVodFZhUzF4TitpMzNDUT09
+
+Meeting ID: 757 7101 6794
+Passcode: RHd6rk
+
+
+*/
+
 var multiverse = new Universe()
 
 var circles = []
@@ -49,7 +64,7 @@ function draw(){
 	let limits = multiverse.actorLimits()
 
   scale(400/Math.max(10,limits[3]-limits[2]), 400/Math.max(limits[1]- limits[0]))
-  //translate(-limits[2], -limits[0])
+  translate(-limits[2], -limits[0])
 
 	background(200)
 	
