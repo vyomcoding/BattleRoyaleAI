@@ -1,5 +1,5 @@
 # BattleRoyaleAI
 
-AI-based fight in a virtual arena
+AI-based fight in a virtual arena !!!
 
 
