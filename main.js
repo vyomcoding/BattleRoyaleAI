@@ -11,7 +11,7 @@ class Universe {
 		this.stage = null
 	}
 
-  actorLimits() {
+  actorLimits(buffer = 0) {
 		
 		let actorsX = []
 		let actorsY = []
@@ -20,21 +20,21 @@ class Universe {
       actorsX.push(this.actors[i].x)
     }
 
-		let leftActor = Math.min(...actorsX)
-		let rightActor = Math.max(...actorsX)
+		let leftActor = Math.min(...actorsX)  - buffer
+		let rightActor = Math.max(...actorsX) + buffer
 
 		for (i=0;i<this.actors.length;i++){
       actorsY.push(this.actors[i].y)
     }
     
-		let upActor = Math.min(...actorsY)
-		let downActor = Math.max(...actorsY)
+		let upActor = Math.min(...actorsY)   - buffer
+		let downActor = Math.max(...actorsY) + buffer
 		
     return([upActor, downActor, leftActor, rightActor])
 	}
 
-	scalingFactors(){
-    let limits = this.actorLimits()
+	scalingFactors(buffer = 10){
+    let limits = this.actorLimits(buffer)
 
     let middle_lines = {x:0, y:0}
     middle_lines.x = limits[2] + (limits[3]-limits[2])/2
@@ -50,5 +50,4 @@ class Universe {
 		return({scale:bigger_side, left:rect_left, top:rect_top})
 	}
 }
-
 

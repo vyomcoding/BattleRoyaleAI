@@ -38,10 +38,10 @@ function setup(){
 
 
 function back_() {
-	for (i=0;i<40;i++) {
+	for (i=-1000;i<1000;i++) {
     
-		line(i*10, 0, i*10, 400)
-		line(0, i*10, 400, i*10)
+		line(i*10, -1000000, i*10, 10000)
+		line(-1000000, i*10, 1000000, i*10)
 	}
 }
 
@@ -51,7 +51,7 @@ function draw(){
 
 	background(200)
 
-  scaling_factors = multiverse.scalingFactors()
+  scaling_factors = multiverse.scalingFactors(circles[0].r + 5)
 	
 	back_()
   
