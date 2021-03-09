@@ -1,34 +1,26 @@
-class Circle {
-	constructor(){
-		this.r = 10
-		this.x = 200 + 200 * (Math.random()-0.5)
-		this.y = 200 + 200 * (Math.random()-0.5)
-		this.d = this.r*2
-	}
-
-	draw(){
-		fill(0)
-		ellipse(this.x, this.y, this.d, this.d)
-	}
-
-	move(){
-		this.x += (Math.random() - 0.5) * 5
-		this.y += (Math.random() - 0.5 )* 5
-	}
-}
-
-
 var multiverse = new Universe()
 
-var circles = []
+var agents = []
+
+var preys = []
+
+var predators = []
 
 for (i=0;i<10;i++) {
-	var circ_ = new Circle()
+	var circ_ = new Prey()
 
-	circles.push(circ_)
+	agents.push(circ_)
+  preys.push(circ_)
 }
 
-multiverse.actors = circles
+for (i=0;i<10;i++) {
+	var circ_ = new Predator()
+	
+	agents.push(circ_)
+  predators.push(circ_)
+}
+
+multiverse.actors = agents
 
 function setup(){
 	createCanvas(400, 400)
@@ -40,8 +32,8 @@ function setup(){
 function back_() {
 	for (i=-1000;i<1000;i++) {
     
-		line(i*10, -1000000, i*10, 10000)
-		line(-1000000, i*10, 1000000, i*10)
+		line(i*20, -1000000, i*20, 10000)
+		line(-1000000, i*20, 1000000, i*20)
 	}
 }
 
@@ -51,15 +43,22 @@ function draw(){
 
 	background(200)
 
-  scaling_factors = multiverse.scalingFactors(circles[0].r + 5)
+  scaling_factors = multiverse.scalingFactors(agents[0].r + 5)
 	
 	back_()
   
-	for (i=0;i<circles.length;i++) {
-		circles[i].draw()
-		circles[i].move()
+	for (i=0;i<agents.length;i++) {
+		agents[i].draw()
+		agents[i].move()
+	}
+
+  for (i=0;i<predators.length;i++) {
+		predators[i].hunt(preys)
 	}
   
+  for (i=0;i<preys.length;i++) {
+		preys[i].flee(predators)
+	}
 }
 
 function meanPosition(circles){ // you have horrible hair

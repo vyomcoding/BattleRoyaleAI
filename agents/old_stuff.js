@@ -132,7 +132,7 @@ function closestAI_AI(AI, otherAIs){
   }
   
   
- function flee_AI(AI,otherAI){
+function flee_AI(AI,otherAI){
   let difference = createVector(otherAI.x - AI.x, otherAI.y - AI.y)
   let enemyHeading = difference.heading()
 
