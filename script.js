@@ -1,33 +1,44 @@
 var multiverse = new Universe()
-
 var agents = []
-
 var preys = []
-
 var predators = []
+var frameCount = 0
 
-for (i=0;i<10;i++) {
-	var circ_ = new Prey()
 
-	agents.push(circ_)
+
+function produceRandomDNA(length){
+	let dnaList = []
+
+	for (i = 0; i<length;i++){
+		dnaList.push(Math.random())
+	}
+
+
+	return dnaList
+}
+
+
+for (let i=0;i<10;i++) {
+  dNA = produceRandomDNA(10)
+	circ_ = new Prey(dNA)
+
   preys.push(circ_)
 }
 
-for (i=0;i<10;i++) {
-	var circ_ = new Predator()
-	
-	agents.push(circ_)
+for (let i=0;i<10;i++) {
+  dNA = produceRandomDNA(10)
+	circ_ = new Predator(dNA)
+  
   predators.push(circ_)
 }
 
-multiverse.actors = agents
+
+multiverse.predators = predators
+multiverse.preys = preys
 
 function setup(){
 	createCanvas(400, 400)
 }
-
-
-
 
 function back_() {
 	for (i=-1000;i<1000;i++) {
@@ -37,28 +48,17 @@ function back_() {
 	}
 }
 
-
-
 function draw(){
 
 	background(200)
 
-  scaling_factors = multiverse.scalingFactors(agents[0].r + 5)
+  multiverse.scalingFactors(15)
 	
 	back_()
-  
-	for (i=0;i<agents.length;i++) {
-		agents[i].draw()
-		agents[i].move()
-	}
 
-  for (i=0;i<predators.length;i++) {
-		predators[i].hunt(preys)
-	}
-  
-  for (i=0;i<preys.length;i++) {
-		preys[i].flee(predators)
-	}
+  multiverse.actorActions()
+
+	multiverse.always()
 }
 
 function meanPosition(circles){ // you have horrible hair
@@ -73,7 +73,6 @@ function meanPosition(circles){ // you have horrible hair
 
 	return({x:xs, y:ys})
 }
-
 
 
 

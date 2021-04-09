@@ -1,7 +1,4 @@
-# BattleRoyaleAI
+# The King of the Jungle
 
-AI-based fight in a virtual arena !!!
-
-
-*--this is not working currently. Please do not try it. Come later!--*
+## AI-based fight in a virtual arena!!!
 

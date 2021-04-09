@@ -7,8 +7,6 @@ Algorithm for the prey AI:
 
 	For the predator AI we will stick with making the predators having to hunt the AIs by chasing at 0 degrees.
 
-
-
 Fix the corners
   Make it so that the predator touching the prey decreases its health. As of now only the weapon can harm.
 
@@ -22,11 +20,5 @@ Done
 i didn't do this bit. 
 
 -- No worries.
-
-
-hello.
-
-the homework is impossible...    i swear
-
 
 

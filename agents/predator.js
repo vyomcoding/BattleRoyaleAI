@@ -1,21 +1,36 @@
 class Predator {
-  constructor(){
+  constructor(deoxyribonucleicAcid){
+
+    this.dNA = deoxyribonucleicAcid
+
     this.x = 100 * Math.random()
     this.y = 100 * Math.random()
 
     this.r = 10
 
-		this.speed = Math.random()
+		this.speed = Math.random() *1.15
 		this.direction = Math.PI * 2 * Math.random()  
 
 		this.health = 100
 
-		this.strength = 10                    
+		this.strength = 100 
+
+    this.stamina = 100 
   }
 
   move(){
-    this.x += this.speed * Math.cos(this.direction)
+    
+    if (this.stamina < 0 ){
+      this.speed = 0
+    }
+
+    this.stamina += 1
+    this.stamina -= this.speed
+
+		this.x += this.speed * Math.cos(this.direction)
     this.y += this.speed * Math.sin(this.direction)
+
+    this.health -= 0.3
   }
 
   draw(){
@@ -25,6 +40,8 @@ class Predator {
 
   hunt(preys){
     let closest_AI = this.closest_AI(preys)
+
+    this.hit(closest_AI)
 
     let difference = createVector(closest_AI.x - this.x, closest_AI.y - this.y)
     this.direction = difference.heading()
@@ -43,23 +60,24 @@ class Predator {
         closest_AI = otherAIs[i]
       }
     }
-		
+		this.speed = this.dNA[Math.round(smallest_distance/25)]
+    
+    if (this.speed == undefined){
+      this.speed = this.dNA[this.dNA.length-1]
+    }
 
     return(closest_AI)
   
 	}
-		hit (otherAI) {
-		let weaponTip = 40
-		let weaponCavity = 10
-		let weaponWidth = 20
-		
-		//let hit = collidePointCircle(this.x + (this.weaponDistance+weaponTip)
-			//*Math.sin(PI-this.weaponAngle) , this.y + (this.weaponDistance+weaponTip)*Math.cos(PI-this.weaponAngle) , otherAI.x, otherAI.y, otherAI.d)
+	
+  hit (otherAI) {
 			
 		let body = collideCircleCircle(this.x, this.y, this.r*2, otherAI.x, otherAI.y, otherAI.r*2) 
 			
 		if (body){
-			otherAI.health -= Math.random()**2 * this.strength
+      let damage = Math.random()**2 * this.strength
+			otherAI.health -= damage
+      this.health += damage/2
 		}
 	}
 }
